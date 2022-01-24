@@ -87,13 +87,13 @@ def mars_facts():
     try:
         # Use 'read_html' to scrape the facts table into a dataframe
         df = pd.read_html('https://data-class-mars-facts.s3.amazonaws.com/Mars_Facts/index.html')[0]
-
     except BaseException:
+        print("Error parsing mars facts website as HTML...")
         return None
 
     # Assign columns and set index of dataframe
-    df.columns=['Description', 'Mars', 'Earth']
-    df.set_index('Description', inplace=True)
+    df.columns=['description', 'Mars', 'Earth']
+    df.set_index('description', inplace=True)
 
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
